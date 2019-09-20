@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30C934CE04CB66367B7E043A /* Pods_Reminderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 912D728258D39EEC79BF2801 /* Pods_Reminderer.framework */; };
 		3A4B69A12333CE77008B94E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69A02333CE77008B94E0 /* AppDelegate.swift */; };
 		3A4B69A32333CE77008B94E0 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69A22333CE77008B94E0 /* MainVC.swift */; };
 		3A4B69A62333CE77008B94E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4B69A42333CE77008B94E0 /* Main.storyboard */; };
@@ -21,6 +22,8 @@
 		3A4B69C22333F6C1008B94E0 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69C12333F6C1008B94E0 /* MainCell.swift */; };
 		3A4B69C42333F6E5008B94E0 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69C32333F6E5008B94E0 /* DayCell.swift */; };
 		3A4B69C62333F70D008B94E0 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69C52333F70D008B94E0 /* CalendarCell.swift */; };
+		3A4B6A2823354D78008B94E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */; };
+		3A4B6A2B2335532A008B94E0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B6A2A2335532A008B94E0 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,11 @@
 		3A4B69C12333F6C1008B94E0 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		3A4B69C32333F6E5008B94E0 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		3A4B69C52333F70D008B94E0 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3A4B6A2A2335532A008B94E0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5A571294FB5F0DC2C926C588 /* Pods-Reminderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reminderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reminderer/Pods-Reminderer.release.xcconfig"; sourceTree = "<group>"; };
+		912D728258D39EEC79BF2801 /* Pods_Reminderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reminderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D011F358DE2E4662F96A8D /* Pods-Reminderer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reminderer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reminderer/Pods-Reminderer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C934CE04CB66367B7E043A /* Pods_Reminderer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +67,8 @@
 			children = (
 				3A4B699F2333CE77008B94E0 /* Reminderer */,
 				3A4B699E2333CE77008B94E0 /* Products */,
+				9D7BC8529301B09F35CE7FF6 /* Pods */,
+				CA0D11056BBC4EF978154414 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,12 +84,14 @@
 			isa = PBXGroup;
 			children = (
 				3A4B69A02333CE77008B94E0 /* AppDelegate.swift */,
+				3A4B6A2923355315008B94E0 /* Utilities */,
 				3A4B69B52333D0DE008B94E0 /* View Controllers */,
 				3A4B69B62333D0E9008B94E0 /* Cells */,
 				3A4B69A42333CE77008B94E0 /* Main.storyboard */,
 				3A4B69AA2333CE78008B94E0 /* Assets.xcassets */,
 				3A4B69AC2333CE78008B94E0 /* LaunchScreen.storyboard */,
 				3A4B69AF2333CE78008B94E0 /* Info.plist */,
+				3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */,
 				3A4B69A72333CE77008B94E0 /* Reminderer.xcdatamodeld */,
 			);
 			path = Reminderer;
@@ -107,6 +120,31 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3A4B6A2923355315008B94E0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3A4B6A2A2335532A008B94E0 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9D7BC8529301B09F35CE7FF6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9D011F358DE2E4662F96A8D /* Pods-Reminderer.debug.xcconfig */,
+				5A571294FB5F0DC2C926C588 /* Pods-Reminderer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CA0D11056BBC4EF978154414 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				912D728258D39EEC79BF2801 /* Pods_Reminderer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,9 +152,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A4B69B22333CE78008B94E0 /* Build configuration list for PBXNativeTarget "Reminderer" */;
 			buildPhases = (
+				DEEE924AADDF8A25F38447AE /* [CP] Check Pods Manifest.lock */,
 				3A4B69992333CE77008B94E0 /* Sources */,
 				3A4B699A2333CE77008B94E0 /* Frameworks */,
 				3A4B699B2333CE77008B94E0 /* Resources */,
+				D108350B5053A3B0924CE4CD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -166,12 +206,66 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A4B69AE2333CE78008B94E0 /* LaunchScreen.storyboard in Resources */,
+				3A4B6A2823354D78008B94E0 /* GoogleService-Info.plist in Resources */,
 				3A4B69AB2333CE78008B94E0 /* Assets.xcassets in Resources */,
 				3A4B69A62333CE77008B94E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D108350B5053A3B0924CE4CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Reminderer/Pods-Reminderer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reminderer/Pods-Reminderer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEEE924AADDF8A25F38447AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Reminderer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3A4B69992333CE77008B94E0 /* Sources */ = {
@@ -189,6 +283,7 @@
 				3A4B69A92333CE77008B94E0 /* Reminderer.xcdatamodeld in Sources */,
 				3A4B69BA2333E3CF008B94E0 /* LoginVC.swift in Sources */,
 				3A4B69C22333F6C1008B94E0 /* MainCell.swift in Sources */,
+				3A4B6A2B2335532A008B94E0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +427,7 @@
 		};
 		3A4B69B32333CE78008B94E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9D011F358DE2E4662F96A8D /* Pods-Reminderer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -350,6 +446,7 @@
 		};
 		3A4B69B42333CE78008B94E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A571294FB5F0DC2C926C588 /* Pods-Reminderer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

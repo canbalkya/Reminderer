@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
@@ -17,6 +18,10 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        saveButton.alpha = 0.0
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     @IBAction func editTapped(_ sender: UIBarButtonItem) {
@@ -26,6 +31,13 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
+        let auth = Auth.auth()
+        
+        do {
+            try auth.signOut()
+        } catch let signoutError as NSError {
+            debugPrint("Error signing out: \(signoutError)")
+        }
     }
     
     @IBAction func deleteAccountTapped(_ sender: UIButton) {

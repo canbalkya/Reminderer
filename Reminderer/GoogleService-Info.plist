@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>715252962766-9p5h0n9bm7am25stqtvk2m4ghuipdouq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.715252962766-9p5h0n9bm7am25stqtvk2m4ghuipdouq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBeiQoLnhtmxr8gp9wegXa-UHbagS7Ql0k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>715252962766</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>CanBalkaya.Reminderer</string>
+	<key>PROJECT_ID</key>
+	<string>reminderer-14565</string>
+	<key>STORAGE_BUCKET</key>
+	<string>reminderer-14565.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:715252962766:ios:5608da73516d8a0aa9079f</string>
+	<key>DATABASE_URL</key>
+	<string>https://reminderer-14565.firebaseio.com</string>
+</dict>
+</plist>

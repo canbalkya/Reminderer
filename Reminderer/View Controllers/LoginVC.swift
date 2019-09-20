@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
     @IBOutlet var textFields: [UITextField]!
@@ -18,5 +19,14 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
+        guard let email = textFields[0].text, let password = textFields[1].text else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if let error = error {
+                debugPrint("Error signing in: \(error)")
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }
