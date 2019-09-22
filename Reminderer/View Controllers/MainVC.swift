@@ -66,7 +66,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         alert.addTextField { (textField) in
             textField.placeholder = "New Target"
         }
-//
+
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
             Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text as Any, IMAGE: #imageLiteral(resourceName: "Off"), STATUS: false, USER_ID: Auth.auth().currentUser?.uid ?? ""], completion: { (error) in
                 if let error = error {
@@ -75,8 +75,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.navigationController?.popViewController(animated: true)
                 }
             })
-
-            print("Successfull! 1")
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
