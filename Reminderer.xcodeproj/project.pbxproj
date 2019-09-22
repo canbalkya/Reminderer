@@ -24,6 +24,7 @@
 		3A4B69C62333F70D008B94E0 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69C52333F70D008B94E0 /* CalendarCell.swift */; };
 		3A4B6A2823354D78008B94E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */; };
 		3A4B6A2B2335532A008B94E0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B6A2A2335532A008B94E0 /* Constants.swift */; };
+		3A519ED72337E1D300D61780 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A519ED62337E1D300D61780 /* Target.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		3A4B69C52333F70D008B94E0 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A4B6A2A2335532A008B94E0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3A519ED62337E1D300D61780 /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		5A571294FB5F0DC2C926C588 /* Pods-Reminderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reminderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Reminderer/Pods-Reminderer.release.xcconfig"; sourceTree = "<group>"; };
 		912D728258D39EEC79BF2801 /* Pods_Reminderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Reminderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D011F358DE2E4662F96A8D /* Pods-Reminderer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reminderer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Reminderer/Pods-Reminderer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				3A4B6A2A2335532A008B94E0 /* Constants.swift */,
+				3A519ED62337E1D300D61780 /* Target.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				3A4B69B82333E3BB008B94E0 /* CalendarVC.swift in Sources */,
 				3A4B69C62333F70D008B94E0 /* CalendarCell.swift in Sources */,
 				3A4B69C02333E430008B94E0 /* DayVC.swift in Sources */,
+				3A519ED72337E1D300D61780 /* Target.swift in Sources */,
 				3A4B69A92333CE77008B94E0 /* Reminderer.xcdatamodeld in Sources */,
 				3A4B69BA2333E3CF008B94E0 /* LoginVC.swift in Sources */,
 				3A4B69C22333F6C1008B94E0 /* MainCell.swift in Sources */,
