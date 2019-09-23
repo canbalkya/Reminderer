@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Today-->
+        <!--Reminderer-->
         <scene sceneID="hzB-eR-3Fv">
             <objects>
                 <viewController id="du9-8k-EvD" customClass="MainVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,11 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jZU-3e-a3m">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jZU-3e-a3m">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="0.24753852739726026" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainCell" rowHeight="60" id="uix-q0-LGP" customClass="MainCell" customModule="Reminderer" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainCell" rowHeight="60" id="uix-q0-LGP" customClass="MainCell" customModule="Reminderer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uix-q0-LGP" id="VU9-xy-DQ9">
@@ -53,6 +54,8 @@
                                                 <constraint firstItem="gbH-aM-h6F" firstAttribute="leading" secondItem="gyv-l7-KjJ" secondAttribute="trailing" constant="8" id="tok-e2-SzS"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="optionImageView" destination="gbH-aM-h6F" id="h8F-JP-IfY"/>
                                             <outlet property="targetLabel" destination="gyv-l7-KjJ" id="SjM-uK-i8c"/>
@@ -63,14 +66,28 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="leading" secondItem="wU8-Y5-apm" secondAttribute="leading" id="A0V-0h-00e"/>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="top" secondItem="wU8-Y5-apm" secondAttribute="top" id="L9b-Wq-JeN"/>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="trailing" secondItem="wU8-Y5-apm" secondAttribute="trailing" id="Vke-vq-hrH"/>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="bottom" secondItem="wU8-Y5-apm" secondAttribute="bottom" id="cQR-ev-Rol"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="leading" secondItem="wU8-Y5-apm" secondAttribute="leading" id="4mA-qG-Nfs"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="top" secondItem="wU8-Y5-apm" secondAttribute="top" id="7kh-qZ-BRL"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="trailing" secondItem="wU8-Y5-apm" secondAttribute="trailing" id="MgO-1k-U3r"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="bottom" secondItem="wU8-Y5-apm" secondAttribute="bottom" id="Ved-cX-PxL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wU8-Y5-apm"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Today" largeTitleDisplayMode="always" id="mvu-Bd-s7D">
+                    <navigationItem key="navigationItem" title="Reminderer" largeTitleDisplayMode="always" id="mvu-Bd-s7D">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="9sy-pv-iBQ">
+                            <rect key="frame" x="99.5" y="7" width="215" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Day"/>
+                                <segment title="Week"/>
+                                <segment title="Month"/>
+                                <segment title="Year"/>
+                            </segments>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="segmentedControllerSelected:" destination="du9-8k-EvD" eventType="valueChanged" id="MWL-Ks-jgz"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="b8B-Ng-6jL">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -79,12 +96,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="segmentedController" destination="9sy-pv-iBQ" id="fXt-Qk-0NB"/>
                         <outlet property="tableView" destination="jZU-3e-a3m" id="6Az-y1-P3D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkW-5d-cfE" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2612" y="-611"/>
+            <point key="canvasLocation" x="2611.594202898551" y="-611.38392857142856"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="H7W-Iu-Smc">
@@ -180,8 +198,8 @@
                     <connections>
                         <outlet property="createAccountButton" destination="3rF-GY-kj9" id="YZz-af-G9s"/>
                         <outlet property="loginButton" destination="iKS-KS-czM" id="4s1-R6-Vud"/>
-                        <outletCollection property="textFields" destination="NYA-B5-qaa" collectionClass="NSMutableArray" id="HJB-BX-ECa"/>
-                        <outletCollection property="textFields" destination="7wD-av-EYt" collectionClass="NSMutableArray" id="AOf-qi-Qcp"/>
+                        <outletCollection property="textFields" destination="NYA-B5-qaa" collectionClass="NSMutableArray" id="WSf-z0-G3n"/>
+                        <outletCollection property="textFields" destination="7wD-av-EYt" collectionClass="NSMutableArray" id="G2F-NJ-JOP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mwr-Ma-uOE" userLabel="First Responder" sceneMemberID="firstResponder"/>

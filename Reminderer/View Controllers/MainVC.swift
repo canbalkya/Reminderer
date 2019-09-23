@@ -11,11 +11,20 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
+enum HistoryCategory: String {
+    case day = "Day"
+    case week = "Week"
+    case mounth = "Mounth"
+    case year = "Year"
+}
+
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedController: UISegmentedControl!
+    let textField = UITextField()
     
     private var targets = [Target]()
-    let textField = UITextField()
+    private var selectedCategory = HistoryCategory.day.rawValue
     private var targetsCollectionRef: CollectionReference!
     private var targetsListener: ListenerRegistration!
     private var handle: AuthStateDidChangeListenerHandle?
@@ -61,6 +70,33 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         navigationItem.hidesSearchBarWhenScrolling = true
     }
     
+    func setListener() {
+        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.targets.removeAll()
+                self.targets = Target.parseData(snapshot: snapshot)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    @IBAction func segmentedControllerSelected(_ sender: UISegmentedControl) {
+        switch segmentedController.selectedSegmentIndex {
+        case 0:
+            selectedCategory = HistoryCategory.day.rawValue
+        case 1:
+            selectedCategory = HistoryCategory.week.rawValue
+        case 2:
+            selectedCategory = HistoryCategory.mounth.rawValue
+        default:
+            selectedCategory = HistoryCategory.year.rawValue
+        }
+        
+        setListener()
+    }
+    
     @IBAction func addTargetButtonTapped(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add New Target", message: "Write for add a new target.", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -68,7 +104,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text as Any, IMAGE: #imageLiteral(resourceName: "Off"), STATUS: false, USER_ID: Auth.auth().currentUser?.uid ?? ""], completion: { (error) in
+            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text, STATUS: false, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {

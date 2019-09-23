@@ -23,7 +23,11 @@ class LoginVC: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
-                debugPrint("Error signing in: \(error)")
+                let alert = UIAlertController(title: error.localizedDescription, message: "Please, try again.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
             } else {
                 self.dismiss(animated: true, completion: nil)
             }
