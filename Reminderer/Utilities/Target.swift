@@ -12,16 +12,14 @@ import Firebase
 class Target {
     private(set) var username: String!
     private(set) var text: String!
-//    private(set) var image: UIImageView!
     private(set) var timestamp: Timestamp!
     private(set) var status: Bool!
     private(set) var documentId: String!
     private(set) var userId: String!
     
-    init(username: String, text: String, /* image: UIImageView, */ timestamp: Timestamp, status: Bool, documentId: String, userId: String) {
+    init(username: String, text: String, timestamp: Timestamp, status: Bool, documentId: String, userId: String) {
         self.username = username
         self.text = text
-//        self.image = image
         self.timestamp = timestamp
         self.status = status
         self.documentId = documentId
@@ -37,13 +35,12 @@ class Target {
             
             let username = data[USERNAME] as? String ?? ""
             let text = data[TEXT] as? String ?? ""
-//            let image = data[IMAGE] as? UIImageView ?? #imageLiteral(resourceName: "Off")
             let timestamp = data[TIMESTAMP] as? Timestamp ?? Timestamp.init(date: Date())
             let status = data[STATUS] as? Bool ?? false
             let documentId = document.documentID
             let userId = data[USER_ID] as? String ?? ""
             
-            let newTarget = Target(username: username, text: text, /* image: image, */ timestamp: timestamp, status: status, documentId: documentId, userId: userId)
+            let newTarget = Target(username: username, text: text, timestamp: timestamp, status: status, documentId: documentId, userId: userId)
             targets.append(newTarget)
         }
         

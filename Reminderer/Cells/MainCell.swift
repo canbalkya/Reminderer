@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class MainCell: UITableViewCell {
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var optionImageView: UIImageView!
+    
+//    private var target: Target!
     
     @IBInspectable var isChecked: Bool = false {
         didSet {
@@ -28,16 +31,23 @@ class MainCell: UITableViewCell {
     
     @objc func optionTapped() {
         if isChecked == true {
-            optionImageView.image = #imageLiteral(resourceName: "Off")
+//            Firestore.firestore().document("targets/\(Target.documentId!)").updateData([STATUS: true])
             status = false
         } else {
-            optionImageView.image = #imageLiteral(resourceName: "On")
+//            Firestore.firestore().document("targets/\(Target.documentId!)").updateData([STATUS: false])
             status = true
         }
     }
     
     func configureCell(target: Target) {
         targetLabel.text = target.text
-//        optionImageView = target.image
+        
+        if status == true {
+            optionImageView = UIImageView(image: #imageLiteral(resourceName: "Off"))
+        } else {
+            optionImageView = UIImageView(image: #imageLiteral(resourceName: "On"))
+        }
+        
+        status = false
     }
 }
