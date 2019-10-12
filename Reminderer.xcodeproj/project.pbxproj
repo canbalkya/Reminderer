@@ -11,7 +11,6 @@
 		3A4B69A12333CE77008B94E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69A02333CE77008B94E0 /* AppDelegate.swift */; };
 		3A4B69A32333CE77008B94E0 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69A22333CE77008B94E0 /* MainVC.swift */; };
 		3A4B69A62333CE77008B94E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4B69A42333CE77008B94E0 /* Main.storyboard */; };
-		3A4B69A92333CE77008B94E0 /* Reminderer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69A72333CE77008B94E0 /* Reminderer.xcdatamodeld */; };
 		3A4B69AB2333CE78008B94E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4B69AA2333CE78008B94E0 /* Assets.xcassets */; };
 		3A4B69AE2333CE78008B94E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A4B69AC2333CE78008B94E0 /* LaunchScreen.storyboard */; };
 		3A4B69B82333E3BB008B94E0 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4B69B72333E3BB008B94E0 /* CalendarVC.swift */; };
@@ -32,7 +31,6 @@
 		3A4B69A02333CE77008B94E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A4B69A22333CE77008B94E0 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		3A4B69A52333CE77008B94E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3A4B69A82333CE77008B94E0 /* Reminderer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reminderer.xcdatamodel; sourceTree = "<group>"; };
 		3A4B69AA2333CE78008B94E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A4B69AD2333CE78008B94E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A4B69AF2333CE78008B94E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				3A4B69AC2333CE78008B94E0 /* LaunchScreen.storyboard */,
 				3A4B69AF2333CE78008B94E0 /* Info.plist */,
 				3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */,
-				3A4B69A72333CE77008B94E0 /* Reminderer.xcdatamodeld */,
 			);
 			path = Reminderer;
 			sourceTree = "<group>";
@@ -284,7 +281,6 @@
 				3A4B69C62333F70D008B94E0 /* CalendarCell.swift in Sources */,
 				3A4B69C02333E430008B94E0 /* DayVC.swift in Sources */,
 				3A519ED72337E1D300D61780 /* Target.swift in Sources */,
-				3A4B69A92333CE77008B94E0 /* Reminderer.xcdatamodeld in Sources */,
 				3A4B69BA2333E3CF008B94E0 /* LoginVC.swift in Sources */,
 				3A4B69C22333F6C1008B94E0 /* MainCell.swift in Sources */,
 				3A4B6A2B2335532A008B94E0 /* Constants.swift in Sources */,
@@ -489,19 +485,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3A4B69A72333CE77008B94E0 /* Reminderer.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3A4B69A82333CE77008B94E0 /* Reminderer.xcdatamodel */,
-			);
-			currentVersion = 3A4B69A82333CE77008B94E0 /* Reminderer.xcdatamodel */;
-			path = Reminderer.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3A4B69952333CE77008B94E0 /* Project object */;
 }

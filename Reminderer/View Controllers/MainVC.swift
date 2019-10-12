@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-enum HistoryCategory: String {
+enum TimeCategory: String {
     case day = "Day"
     case week = "Week"
     case mounth = "Mounth"
@@ -21,10 +21,9 @@ enum HistoryCategory: String {
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
-    let textField = UITextField()
     
     private var targets = [Target]()
-    private var selectedCategory = HistoryCategory.day.rawValue
+    private var selectedCategory = TimeCategory.day.rawValue
     private var targetsCollectionRef: CollectionReference!
     private var targetsListener: ListenerRegistration!
     private var handle: AuthStateDidChangeListenerHandle?
@@ -47,6 +46,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 let loginVC = storyboard.instantiateViewController(withIdentifier: "loginVC")
                 
                 self.present(loginVC, animated: true, completion: nil)
+            } else {
+                self.setListener()
             }
         })
     }
@@ -58,7 +59,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
         cell?.configureCell(target: targets[indexPath.row])
-        
         return cell!
     }
     
@@ -82,16 +82,59 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+//            Firestore.firestore().collection(TARGETS_REF).document(target.documentId).delete { (error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                }
+//            }
+            
+            tableView.reloadData()
+        }
+    }
+    
+    func delete(collection: CollectionReference, batchSize: Int = 100, completion: @escaping (Error?) -> ()) {
+        collection.limit(to: batchSize).getDocuments { (docset, error) in
+            guard let docset = docset else {
+                completion(error)
+
+                return
+            }
+
+            guard docset.count > 0 else {
+                completion(nil)
+
+                return
+            }
+
+            let batch = collection.firestore.batch()
+            docset.documents.forEach { batch.deleteDocument($0.reference) }
+
+            batch.commit { (batchError) in
+                if let batchError = batchError {
+                    completion(batchError)
+                } else {
+                    self.delete(collection: collection, batchSize: batchSize, completion: completion)
+                }
+            }
+        }
+    }
+    
     @IBAction func segmentedControllerSelected(_ sender: UISegmentedControl) {
         switch segmentedController.selectedSegmentIndex {
         case 0:
-            selectedCategory = HistoryCategory.day.rawValue
+            selectedCategory = TimeCategory.day.rawValue
         case 1:
-            selectedCategory = HistoryCategory.week.rawValue
+            selectedCategory = TimeCategory.week.rawValue
         case 2:
-            selectedCategory = HistoryCategory.mounth.rawValue
+            selectedCategory = TimeCategory.mounth.rawValue
         default:
-            selectedCategory = HistoryCategory.year.rawValue
+            selectedCategory = TimeCategory.year.rawValue
         }
         
         setListener()
@@ -109,6 +152,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     debugPrint("Error adding document: \(error)")
                 } else {
                     self.navigationController?.popViewController(animated: true)
+                    self.tableView.reloadData()
+                    self.setListener()
                 }
             })
         }

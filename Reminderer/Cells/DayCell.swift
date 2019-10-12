@@ -10,9 +10,12 @@ import UIKit
 
 class DayCell: UITableViewCell {
     @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var optionImageView: UIImageView!
+    @IBOutlet weak var markButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    @IBAction func markButtonTapped(_ sender: UIButton) {
     }
 }

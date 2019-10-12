@@ -11,43 +11,15 @@ import FirebaseFirestore
 
 class MainCell: UITableViewCell {
     @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var optionImageView: UIImageView!
+    @IBOutlet weak var markButton: UIButton!
     
-//    private var target: Target!
-    
-    @IBInspectable var isChecked: Bool = false {
-        didSet {
-            self.optionTapped()
-        }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(optionTapped))
-        optionImageView.addGestureRecognizer(tap)
-        optionImageView.isUserInteractionEnabled = true
-    }
-    
-    @objc func optionTapped() {
-        if isChecked == true {
-//            Firestore.firestore().document("targets/\(Target.documentId!)").updateData([STATUS: true])
-            status = false
-        } else {
-//            Firestore.firestore().document("targets/\(Target.documentId!)").updateData([STATUS: false])
-            status = true
-        }
+    override func awakeFromNib() {        super.awakeFromNib()
     }
     
     func configureCell(target: Target) {
         targetLabel.text = target.text
-        
-        if status == true {
-            optionImageView = UIImageView(image: #imageLiteral(resourceName: "Off"))
-        } else {
-            optionImageView = UIImageView(image: #imageLiteral(resourceName: "On"))
-        }
-        
-        status = false
+    }
+    
+    @IBAction func markButtonTapped(_ sender: UIButton) {
     }
 }
