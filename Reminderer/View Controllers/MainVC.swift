@@ -147,12 +147,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text, STATUS: false, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
+            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 1, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {
                     self.navigationController?.popViewController(animated: true)
-                    self.tableView.reloadData()
                     self.setListener()
                 }
             })

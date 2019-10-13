@@ -22,7 +22,7 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTextFields(enabled: false, color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+        setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
         
         saveButton.alpha = 0.0
         textFields[0].text = Auth.auth().currentUser?.displayName
@@ -43,11 +43,11 @@ class ProfileVC: UIViewController {
         tapped += 1
         
         if tapped.isMultiple(of: 2) {
-            setTextFields(enabled: true, color: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+            setTextFields(enabled: true, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
             saveButton.isEnabled = true
             saveButton.alpha = 1
         } else {
-            setTextFields(enabled: false, color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+            setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
             saveButton.isEnabled = false
             saveButton.alpha = 0
         }
@@ -69,7 +69,7 @@ class ProfileVC: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
         
-        setTextFields(enabled: false, color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+        setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
         saveButton.isEnabled = false
         saveButton.alpha = 0
         tapped += 1

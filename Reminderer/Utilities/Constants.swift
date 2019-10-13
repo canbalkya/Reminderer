@@ -17,7 +17,7 @@ let USERNAME = "username"
 let DATE_CREATED = "dateCreated"
 let TEXT = "text"
 let IMAGE = "image"
-let STATUS = "status"
+let NUMBER = "number"
 let USER_ID = "userId"
 
 var status = false

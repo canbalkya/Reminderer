@@ -13,15 +13,15 @@ class Target {
     private(set) var username: String!
     private(set) var text: String!
     private(set) var timestamp: Timestamp!
-    private(set) var status: Bool!
+    private(set) var number: Int!
     private(set) var documentId: String!
     private(set) var userId: String!
     
-    init(username: String, text: String, timestamp: Timestamp, status: Bool, documentId: String, userId: String) {
+    init(username: String, text: String, timestamp: Timestamp, number: Int, documentId: String, userId: String) {
         self.username = username
         self.text = text
         self.timestamp = timestamp
-        self.status = status
+        self.number = number
         self.documentId = documentId
         self.userId = userId
     }
@@ -36,11 +36,11 @@ class Target {
             let username = data[USERNAME] as? String ?? ""
             let text = data[TEXT] as? String ?? ""
             let timestamp = data[TIMESTAMP] as? Timestamp ?? Timestamp.init(date: Date())
-            let status = data[STATUS] as? Bool ?? false
+            let number = data[NUMBER] as? Int ?? 1
             let documentId = document.documentID
             let userId = data[USER_ID] as? String ?? ""
             
-            let newTarget = Target(username: username, text: text, timestamp: timestamp, status: status, documentId: documentId, userId: userId)
+            let newTarget = Target(username: username, text: text, timestamp: timestamp, number: number, documentId: documentId, userId: userId)
             targets.append(newTarget)
         }
         

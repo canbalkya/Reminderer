@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyv-l7-KjJ">
-                                                    <rect key="frame" x="20" y="11" width="326" height="38"/>
+                                                    <rect key="frame" x="20" y="11" width="336" height="38"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="328" id="Pm9-4G-dlV"/>
                                                     </constraints>
@@ -38,21 +39,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkO-Ex-Kgt">
-                                                    <rect key="frame" x="354" y="11" width="40" height="37.5"/>
+                                                    <rect key="frame" x="364" y="11" width="40" height="37.5"/>
+                                                    <color key="backgroundColor" name="Color-1"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="dZ0-Ua-gnd"/>
                                                         <constraint firstAttribute="height" constant="40" id="kGT-kE-i73"/>
                                                     </constraints>
-                                                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="tintColor" name="Color"/>
                                                     <state key="normal" backgroundImage="square" catalog="system">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleColor" name="Color"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="markButtonTapped:" destination="uix-q0-LGP" eventType="touchUpInside" id="HeK-WF-6my"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gyv-l7-KjJ" firstAttribute="top" secondItem="VU9-xy-DQ9" secondAttribute="topMargin" id="3Ue-4b-I88"/>
                                                 <constraint firstItem="TkO-Ex-Kgt" firstAttribute="top" secondItem="VU9-xy-DQ9" secondAttribute="topMargin" constant="-1" id="DCz-KN-qYZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="TkO-Ex-Kgt" secondAttribute="trailing" constant="20" id="Ivj-aD-QJz"/>
+                                                <constraint firstAttribute="trailing" secondItem="TkO-Ex-Kgt" secondAttribute="trailing" constant="10" id="Ivj-aD-QJz"/>
                                                 <constraint firstItem="TkO-Ex-Kgt" firstAttribute="leading" secondItem="gyv-l7-KjJ" secondAttribute="trailing" constant="8" id="KAn-SZ-qyD"/>
                                                 <constraint firstItem="gyv-l7-KjJ" firstAttribute="bottom" secondItem="VU9-xy-DQ9" secondAttribute="bottomMargin" id="Neb-1s-3e5"/>
                                                 <constraint firstItem="gyv-l7-KjJ" firstAttribute="centerY" secondItem="TkO-Ex-Kgt" secondAttribute="centerY" id="afW-0t-hls"/>
@@ -60,6 +65,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="markButton" destination="TkO-Ex-Kgt" id="p0J-iv-dew"/>
                                             <outlet property="targetLabel" destination="gyv-l7-KjJ" id="SjM-uK-i8c"/>
                                         </connections>
                                     </tableViewCell>
@@ -91,6 +97,7 @@
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="b8B-Ng-6jL">
+                            <color key="tintColor" name="Color"/>
                             <connections>
                                 <action selector="addTargetButtonTapped:" destination="du9-8k-EvD" id="MdV-rq-McQ"/>
                             </connections>
@@ -116,7 +123,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsK-F1-TXp">
                                 <rect key="frame" x="120" y="114" width="174" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NYA-B5-qaa">
@@ -154,7 +161,7 @@
                                     <constraint firstAttribute="height" constant="25" id="q4m-nH-Yc9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rF-GY-kj9">
@@ -164,14 +171,14 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Create Account">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <segue destination="IUx-xc-UAu" kind="show" id="h9i-Iz-TsL"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Color-1"/>
                         <constraints>
                             <constraint firstItem="7wD-av-EYt" firstAttribute="top" secondItem="NYA-B5-qaa" secondAttribute="bottom" constant="10" id="01J-0c-Lwv"/>
                             <constraint firstItem="GAB-UB-3dO" firstAttribute="trailing" secondItem="3rF-GY-kj9" secondAttribute="trailing" constant="70" id="01n-xe-spj"/>
@@ -236,7 +243,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Ve-0q-MbA">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="Color-1"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="icJ-ZG-7F9">
                                     <size key="itemSize" width="170" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -293,7 +300,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Color-1"/>
                         <constraints>
                             <constraint firstItem="6Ve-0q-MbA" firstAttribute="leading" secondItem="3tZ-yS-Q2d" secondAttribute="leading" id="NKm-gM-3i3"/>
                             <constraint firstItem="6Ve-0q-MbA" firstAttribute="bottom" secondItem="3tZ-yS-Q2d" secondAttribute="bottom" id="WDr-h1-qDv"/>
@@ -436,31 +443,38 @@
                                 <rect key="frame" x="157" y="403" width="100" height="42"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <state key="normal" title="Save">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="Color"/>
+                                    <color key="titleShadowColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <action selector="saveTapped:" destination="eR8-jA-CVg" eventType="touchUpInside" id="SPq-nM-Hu8"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TWX-nx-aiB">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TWX-nx-aiB">
                                 <rect key="frame" x="32" y="283" width="350" height="40"/>
+                                <color key="backgroundColor" name="Color-1"/>
+                                <color key="tintColor" name="Color-1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3yV-bg-kUz"/>
                                 </constraints>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuJ-JR-c5p">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuJ-JR-c5p">
                                 <rect key="frame" x="32" y="333" width="350" height="40"/>
+                                <color key="backgroundColor" name="Color-1"/>
+                                <color key="tintColor" name="Color-1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Ydw-A4-57p"/>
                                 </constraints>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LWw-CN-vIG">
                                 <rect key="frame" x="127" y="114.5" width="160" height="137"/>
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="tintColor" name="Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="Se9-Ph-RID"/>
                                     <constraint firstAttribute="height" constant="140" id="eGH-bX-V46"/>
@@ -470,7 +484,7 @@
                                 <rect key="frame" x="120" y="755" width="174" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Delete Account">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <action selector="deleteAccountTapped:" destination="eR8-jA-CVg" eventType="touchUpInside" id="Lxo-2d-MeK"/>
@@ -480,14 +494,14 @@
                                 <rect key="frame" x="120" y="714" width="174" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Logout">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <action selector="logoutButtonTapped:" destination="eR8-jA-CVg" eventType="touchUpInside" id="Ied-s1-wrs"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Color-1"/>
                         <constraints>
                             <constraint firstItem="a6m-d8-Z6N" firstAttribute="trailing" secondItem="LWw-CN-vIG" secondAttribute="trailing" constant="127" id="3ic-mC-vcF"/>
                             <constraint firstItem="LWw-CN-vIG" firstAttribute="top" secondItem="a6m-d8-Z6N" secondAttribute="top" constant="25" id="9Pr-zu-vJD"/>
@@ -513,7 +527,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="xkx-u0-XJl">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="yZN-zP-Irb">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" name="Color"/>
                             <connections>
                                 <action selector="editTapped:" destination="eR8-jA-CVg" id="Rb8-7z-5tk"/>
                             </connections>
@@ -543,7 +557,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf4-05-caK">
                                 <rect key="frame" x="30" y="70" width="354" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9j-HS-xFU">
@@ -574,7 +588,7 @@
                                 <rect key="frame" x="100" y="348" width="214" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Create Account">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <action selector="createAccountTapped:" destination="IUx-xc-UAu" eventType="touchUpInside" id="8DX-5J-di6"/>
@@ -584,7 +598,7 @@
                                 <rect key="frame" x="131" y="392" width="153" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <action selector="cancelTapped:" destination="IUx-xc-UAu" eventType="touchUpInside" id="0gR-DC-dzI"/>
@@ -592,7 +606,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Color-1"/>
                         <constraints>
                             <constraint firstItem="QeQ-dt-OyW" firstAttribute="top" secondItem="Oko-2o-CMH" secondAttribute="bottom" constant="10" id="2kw-KR-1cp"/>
                             <constraint firstItem="D9j-HS-xFU" firstAttribute="leading" secondItem="An1-Ub-uto" secondAttribute="leading" constant="56" id="4WH-Oq-IId"/>
@@ -653,5 +667,11 @@
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="square" catalog="system" width="64" height="56"/>
+        <namedColor name="Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Color-1">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
