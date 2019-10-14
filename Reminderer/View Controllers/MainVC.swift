@@ -14,7 +14,7 @@ import FirebaseFirestore
 enum TimeCategory: String {
     case day = "Day"
     case week = "Week"
-    case mounth = "Mounth"
+    case month = "Mounth"
     case year = "Year"
 }
 
@@ -22,8 +22,10 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
+    var target: Target!
+    
     private var targets = [Target]()
-    private var selectedCategory = TimeCategory.day.rawValue
+    static var selectedCategory = TimeCategory.day.rawValue
     private var targetsCollectionRef: CollectionReference!
     private var targetsListener: ListenerRegistration!
     private var handle: AuthStateDidChangeListenerHandle?
@@ -59,6 +61,17 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
         cell?.configureCell(target: targets[indexPath.row])
+        
+        if MainVC.selectedCategory == TimeCategory.day.rawValue {
+            
+        } else if MainVC.selectedCategory == TimeCategory.week.rawValue {
+            
+        } else if MainVC.selectedCategory == TimeCategory.month.rawValue {
+            
+        } else if MainVC.selectedCategory == TimeCategory.year.rawValue {
+            
+        }
+        
         return cell!
     }
     
@@ -71,7 +84,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setListener() {
-        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
+        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: MainVC.selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -128,13 +141,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func segmentedControllerSelected(_ sender: UISegmentedControl) {
         switch segmentedController.selectedSegmentIndex {
         case 0:
-            selectedCategory = TimeCategory.day.rawValue
+            MainVC.selectedCategory = TimeCategory.day.rawValue
         case 1:
-            selectedCategory = TimeCategory.week.rawValue
+            MainVC.selectedCategory = TimeCategory.week.rawValue
         case 2:
-            selectedCategory = TimeCategory.mounth.rawValue
+            MainVC.selectedCategory = TimeCategory.month.rawValue
         default:
-            selectedCategory = TimeCategory.year.rawValue
+            MainVC.selectedCategory = TimeCategory.year.rawValue
         }
         
         setListener()
@@ -147,7 +160,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 1, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
+            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 1, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: MainVC.self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {

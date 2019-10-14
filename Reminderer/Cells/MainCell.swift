@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseFirestore
+import Firebase
 
 class MainCell: UITableViewCell {
     @IBOutlet weak var targetLabel: UILabel!
@@ -15,9 +15,12 @@ class MainCell: UITableViewCell {
     
 //    var number = Firestore.firestore().document("targets/\(target.documentId!)").updateData([NUMBER: target.number])
 
+    var target: Target!
+    
     var number = 0
     
-    override func awakeFromNib() {        super.awakeFromNib()
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
     
     func configureCell(target: Target) {

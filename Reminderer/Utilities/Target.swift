@@ -6,16 +6,16 @@
 //  Copyright © 2019 Can Balkaya. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import Firebase
 
 class Target {
-    private(set) var username: String!
-    private(set) var text: String!
-    private(set) var timestamp: Timestamp!
-    private(set) var number: Int!
-    private(set) var documentId: String!
-    private(set) var userId: String!
+    var username: String!
+    var text: String!
+    var timestamp: Timestamp!
+    var number: Int!
+    var documentId: String!
+    var userId: String!
     
     init(username: String, text: String, timestamp: Timestamp, number: Int, documentId: String, userId: String) {
         self.username = username
