@@ -115,7 +115,7 @@
         <!--LoginVC-->
         <scene sceneID="H7W-Iu-Smc">
             <objects>
-                <viewController storyboardIdentifier="loginVC" id="tch-Hp-qvs" customClass="LoginVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" modalPresentationStyle="fullScreen" id="tch-Hp-qvs" customClass="LoginVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tmv-UY-8Wz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,7 +149,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Login">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="Color"/>
                                 </state>
                                 <connections>
                                     <action selector="loginTapped:" destination="tch-Hp-qvs" eventType="touchUpInside" id="Ct3-LW-iaS"/>
@@ -549,43 +549,49 @@
         <!--Create AccountVC-->
         <scene sceneID="bVh-1H-RIl">
             <objects>
-                <viewController id="IUx-xc-UAu" customClass="CreateAccountVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="IUx-xc-UAu" customClass="CreateAccountVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bae-US-QAp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vf4-05-caK">
-                                <rect key="frame" x="30" y="70" width="354" height="48"/>
+                                <rect key="frame" x="30" y="114" width="354" height="48"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
                                 <color key="textColor" name="Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D9j-HS-xFU">
-                                <rect key="frame" x="56" y="138" width="303" height="40"/>
+                                <rect key="frame" x="56" y="182" width="303" height="40"/>
+                                <color key="backgroundColor" name="Color-1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="s9r-10-Vug"/>
                                 </constraints>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QeQ-dt-OyW">
-                                <rect key="frame" x="56" y="238" width="303" height="40"/>
+                                <rect key="frame" x="56" y="282" width="303" height="40"/>
+                                <color key="backgroundColor" name="Color-1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5b8-sR-Y6b"/>
                                 </constraints>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oko-2o-CMH">
-                                <rect key="frame" x="56" y="188" width="303" height="40"/>
+                                <rect key="frame" x="56" y="232" width="303" height="40"/>
+                                <color key="backgroundColor" name="Color-1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UeL-zM-VYQ"/>
                                 </constraints>
+                                <color key="textColor" name="Color"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xb-jc-Zq6">
-                                <rect key="frame" x="100" y="348" width="214" height="36"/>
+                                <rect key="frame" x="100" y="392" width="214" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" name="Color"/>
@@ -595,7 +601,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjb-oO-OMQ">
-                                <rect key="frame" x="131" y="392" width="153" height="30"/>
+                                <rect key="frame" x="131" y="436" width="153" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" name="Color"/>

@@ -101,38 +101,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            Firestore.firestore().collection(TARGETS_REF).document(target.documentId).delete { (error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                }
-//            }
-            
-            tableView.reloadData()
-        }
-    }
-    
-    func delete(collection: CollectionReference, batchSize: Int = 100, completion: @escaping (Error?) -> ()) {
-        collection.limit(to: batchSize).getDocuments { (docset, error) in
-            guard let docset = docset else {
-                completion(error)
-
-                return
-            }
-
-            guard docset.count > 0 else {
-                completion(nil)
-
-                return
-            }
-
-            let batch = collection.firestore.batch()
-            docset.documents.forEach { batch.deleteDocument($0.reference) }
-
-            batch.commit { (batchError) in
-                if let batchError = batchError {
-                    completion(batchError)
+            Firestore.firestore().collection(TARGETS_REF).document(target!.documentId).delete { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
                 } else {
-                    self.delete(collection: collection, batchSize: batchSize, completion: completion)
+                    self.setListener()
                 }
             }
         }

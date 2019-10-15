@@ -12,31 +12,28 @@ import Firebase
 class MainCell: UITableViewCell {
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var markButton: UIButton!
-    
-//    var number = Firestore.firestore().document("targets/\(target.documentId!)").updateData([NUMBER: target.number])
 
-    var target: Target!
-    
-    var number = 0
+    var targett: Target!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func configureCell(target: Target) {
-        targetLabel.text = target.text
+        self.targett = target
         
-        number = target.number
+        targetLabel.text = target.text
         
         if target.number.isMultiple(of: 2) {
             markButton.imageView?.image = UIImage(named: "square.fill")
         } else {
-            markButton.imageView?.image = UIImage(named: "square.fill")
+            markButton.imageView?.image = UIImage(named: "square")
         }
     }
     
     @IBAction func markButtonTapped(_ sender: UIButton) {
-        number += 1
-//        Firestore.firestore().document("targets/\(Target.documentId!)").updateData([NUMBER: target.number + 1])
+//        Firestore.firestore().document("targets/\(targett.documentId!)").updateData([NUMBER: targett.number + 1])
+        targett.number += 1
+        markButton.imageView?.image = UIImage(named: "square.fill")
     }
 }
