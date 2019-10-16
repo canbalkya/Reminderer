@@ -82,7 +82,7 @@
                         <viewLayoutGuide key="safeArea" id="wU8-Y5-apm"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reminderer" largeTitleDisplayMode="always" id="mvu-Bd-s7D">
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="9sy-pv-iBQ">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="9sy-pv-iBQ">
                             <rect key="frame" x="89.5" y="6" width="235" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>

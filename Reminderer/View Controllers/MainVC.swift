@@ -23,9 +23,13 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var target: Target!
-    
     private var targets = [Target]()
-    static var selectedCategory = TimeCategory.day.rawValue
+    private var days = [Target]()
+    private var weeks = [Target]()
+    private var months = [Target]()
+    private var years = [Target]()
+    
+    private var selectedCategory = TimeCategory.day.rawValue
     private var targetsCollectionRef: CollectionReference!
     private var targetsListener: ListenerRegistration!
     private var handle: AuthStateDidChangeListenerHandle?
@@ -35,6 +39,18 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        for target in targets {
+            if target.category == TimeCategory.day.rawValue {
+                days.append(target)
+            } else if target.category == TimeCategory.week.rawValue {
+                weeks.append(target)
+            } else if target.category == TimeCategory.month.rawValue {
+                months.append(target)
+            } else if target.category == TimeCategory.year.rawValue {
+                years.append(target)
+            }
+        }
         
         setupNavBar()
         
@@ -55,21 +71,32 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return targets.count
+        var count = 0
+        
+        if selectedCategory == TimeCategory.day.rawValue {
+            count = days.count
+        } else if selectedCategory == TimeCategory.week.rawValue {
+            count = weeks.count
+        } else if selectedCategory == TimeCategory.month.rawValue {
+            count = months.count
+        } else if selectedCategory == TimeCategory.year.rawValue {
+            count = years.count
+        }
+        
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
-        cell?.configureCell(target: targets[indexPath.row])
         
-        if MainVC.selectedCategory == TimeCategory.day.rawValue {
-            
-        } else if MainVC.selectedCategory == TimeCategory.week.rawValue {
-            
-        } else if MainVC.selectedCategory == TimeCategory.month.rawValue {
-            
-        } else if MainVC.selectedCategory == TimeCategory.year.rawValue {
-            
+        if selectedCategory == TimeCategory.day.rawValue {
+            cell?.configureCell(target: days[indexPath.row])
+        } else if selectedCategory == TimeCategory.week.rawValue {
+            cell?.configureCell(target: weeks[indexPath.row])
+        } else if selectedCategory == TimeCategory.month.rawValue {
+            cell?.configureCell(target: months[indexPath.row])
+        } else if selectedCategory == TimeCategory.year.rawValue {
+            cell?.configureCell(target: years[indexPath.row])
         }
         
         return cell!
@@ -84,11 +111,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func setListener() {
-        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: MainVC.selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
+        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
                 self.targets.removeAll()
+                
                 self.targets = Target.parseData(snapshot: snapshot)
                 self.tableView.reloadData()
             }
@@ -114,16 +142,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func segmentedControllerSelected(_ sender: UISegmentedControl) {
         switch segmentedController.selectedSegmentIndex {
         case 0:
-            MainVC.selectedCategory = TimeCategory.day.rawValue
+            selectedCategory = TimeCategory.day.rawValue
         case 1:
-            MainVC.selectedCategory = TimeCategory.week.rawValue
+            selectedCategory = TimeCategory.week.rawValue
         case 2:
-            MainVC.selectedCategory = TimeCategory.month.rawValue
+            selectedCategory = TimeCategory.month.rawValue
         default:
-            MainVC.selectedCategory = TimeCategory.year.rawValue
+            selectedCategory = TimeCategory.year.rawValue
         }
-        
-        setListener()
     }
     
     @IBAction func addTargetButtonTapped(_ sender: UIBarButtonItem) {
@@ -133,7 +159,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            Firestore.firestore().collection(TARGETS_REF).addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 1, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: MainVC.self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
+            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 0, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {

@@ -17,7 +17,7 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var deleteAccountButton: UIButton!
     
     var bool = Bool()
-    var tapped = 1
+    var tapped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +40,15 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func editTapped(_ sender: UIBarButtonItem) {
-        tapped += 1
-        
-        if tapped.isMultiple(of: 2) {
+        if tapped == true {
+            tapped = false
+            
             setTextFields(enabled: true, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
             saveButton.isEnabled = true
             saveButton.alpha = 1
         } else {
+            tapped = true
+            
             setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
             saveButton.isEnabled = false
             saveButton.alpha = 0
@@ -72,7 +74,7 @@ class ProfileVC: UIViewController {
         setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
         saveButton.isEnabled = false
         saveButton.alpha = 0
-        tapped += 1
+        tapped = false
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
