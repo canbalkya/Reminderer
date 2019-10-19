@@ -40,15 +40,15 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func editTapped(_ sender: UIBarButtonItem) {
-        if tapped == true {
-            tapped = false
-            
+        if tapped == false {
+            tapped = true
+
             setTextFields(enabled: true, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
             saveButton.isEnabled = true
             saveButton.alpha = 1
         } else {
-            tapped = true
-            
+            tapped = false
+
             setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
             saveButton.isEnabled = false
             saveButton.alpha = 0
