@@ -18,16 +18,19 @@ enum TimeCategory: String {
     case year = "Year"
 }
 
-class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var target: Target!
     private var targets = [Target]()
-    private var days = [Target]()
-    private var weeks = [Target]()
-    private var months = [Target]()
-    private var years = [Target]()
+    var searchTargets = [Target]()
+//    private var days = [Target]()
+//    private var weeks = [Target]()
+//    private var months = [Target]()
+//    private var years = [Target]()
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     private var selectedCategory = TimeCategory.day.rawValue
     private var targetsCollectionRef: CollectionReference!
@@ -40,15 +43,17 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        searchTargets = targets
+        
         for target in targets {
             if target.category == TimeCategory.day.rawValue {
-                days.append(target)
+                targets.append(target)
             } else if target.category == TimeCategory.week.rawValue {
-                weeks.append(target)
+                targets.append(target)
             } else if target.category == TimeCategory.month.rawValue {
-                months.append(target)
+                targets.append(target)
             } else if target.category == TimeCategory.year.rawValue {
-                years.append(target)
+                targets.append(target)
             }
         }
         
@@ -71,43 +76,46 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
+//        if selectedCategory == TimeCategory.day.rawValue {
+//            count = targets.count
+//        } else if selectedCategory == TimeCategory.week.rawValue {
+//            count = targets.count
+//        } else if selectedCategory == TimeCategory.month.rawValue {
+//            count = targets.count
+//        } else if selectedCategory == TimeCategory.year.rawValue {
+//            count = targets.count
+//        }
         
-        if selectedCategory == TimeCategory.day.rawValue {
-            count = days.count
-        } else if selectedCategory == TimeCategory.week.rawValue {
-            count = weeks.count
-        } else if selectedCategory == TimeCategory.month.rawValue {
-            count = months.count
-        } else if selectedCategory == TimeCategory.year.rawValue {
-            count = years.count
-        }
-        
-        return count
+        return searchTargets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
+        cell?.configureCell(target: searchTargets[indexPath.row])
         
-        if selectedCategory == TimeCategory.day.rawValue {
-            cell?.configureCell(target: days[indexPath.row])
-        } else if selectedCategory == TimeCategory.week.rawValue {
-            cell?.configureCell(target: weeks[indexPath.row])
-        } else if selectedCategory == TimeCategory.month.rawValue {
-            cell?.configureCell(target: months[indexPath.row])
-        } else if selectedCategory == TimeCategory.year.rawValue {
-            cell?.configureCell(target: years[indexPath.row])
-        }
+//        if selectedCategory == TimeCategory.day.rawValue {
+//            cell?.configureCell(target: targets[indexPath.row])
+//        } else if selectedCategory == TimeCategory.week.rawValue {
+//            cell?.configureCell(target: targets[indexPath.row])
+//        } else if selectedCategory == TimeCategory.month.rawValue {
+//            cell?.configureCell(target: targets[indexPath.row])
+//        } else if selectedCategory == TimeCategory.year.rawValue {
+//            cell?.configureCell(target: targets[indexPath.row])
+//        }
         
         return cell!
     }
     
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
+        
+        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Find a target"
+        searchController.searchBar.keyboardAppearance = .dark
+        navigationItem.searchController = searchController
     }
     
     func setListener() {
@@ -116,7 +124,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print(error.localizedDescription)
             } else {
                 self.targets.removeAll()
-                
                 self.targets = Target.parseData(snapshot: snapshot)
                 self.tableView.reloadData()
             }
@@ -137,6 +144,20 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchTargets = targets.filter({ target -> Bool in
+            if searchText.isEmpty { return true }
+            return target.text.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        searchTargets = targets
+        tableView.reloadData()
     }
     
     @IBAction func segmentedControllerSelected(_ sender: UISegmentedControl) {
