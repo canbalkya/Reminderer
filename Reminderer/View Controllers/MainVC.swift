@@ -24,7 +24,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     var target: Target!
     private var targets = [Target]()
-    var searchTargets = [Target]()
+//    var searchTargets = [Target]()
 //    private var days = [Target]()
 //    private var weeks = [Target]()
 //    private var months = [Target]()
@@ -43,17 +43,17 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         tableView.delegate = self
         tableView.dataSource = self
         
-        searchTargets = targets
+//        searchTargets = targets
         
         for target in targets {
             if target.category == TimeCategory.day.rawValue {
-                targets.append(target)
+//                targets.append(target)
             } else if target.category == TimeCategory.week.rawValue {
-                targets.append(target)
+//                targets.append(target)
             } else if target.category == TimeCategory.month.rawValue {
-                targets.append(target)
+//                targets.append(target)
             } else if target.category == TimeCategory.year.rawValue {
-                targets.append(target)
+//                targets.append(target)
             }
         }
         
@@ -86,12 +86,14 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
 //            count = targets.count
 //        }
         
-        return searchTargets.count
+//        return searchTargets.count
+        return targets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
-        cell?.configureCell(target: searchTargets[indexPath.row])
+//        cell?.configureCell(target: searchTargets[indexPath.row])
+        cell?.configureCell(target: targets[indexPath.row])
         
 //        if selectedCategory == TimeCategory.day.rawValue {
 //            cell?.configureCell(target: targets[indexPath.row])
@@ -147,7 +149,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchTargets = targets.filter({ target -> Bool in
+//        searchTargets = targets.filter({ target -> Bool in
+//            if searchText.isEmpty { return true }
+//            return target.text.lowercased().contains(searchText.lowercased())
+//        })
+        targets = targets.filter({ target -> Bool in
             if searchText.isEmpty { return true }
             return target.text.lowercased().contains(searchText.lowercased())
         })
@@ -156,7 +162,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        searchTargets = targets
+//        searchTargets = targets
         tableView.reloadData()
     }
     
