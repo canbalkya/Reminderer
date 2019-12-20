@@ -24,11 +24,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     var target: Target!
     private var targets = [Target]()
-//    var searchTargets = [Target]()
-//    private var days = [Target]()
-//    private var weeks = [Target]()
-//    private var months = [Target]()
-//    private var years = [Target]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
