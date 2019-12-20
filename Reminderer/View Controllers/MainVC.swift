@@ -11,13 +11,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-enum TimeCategory: String {
-    case day = "Day"
-    case week = "Week"
-    case month = "Mounth"
-    case year = "Year"
-}
-
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedController: UISegmentedControl!
@@ -26,8 +19,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     private var targets = [Target]()
     
     let searchController = UISearchController(searchResultsController: nil)
-    
-    private var selectedCategory = TimeCategory.day.rawValue
+
     private var targetsCollectionRef: CollectionReference!
     private var targetsListener: ListenerRegistration!
     private var handle: AuthStateDidChangeListenerHandle?
@@ -39,18 +31,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         tableView.dataSource = self
         
 //        searchTargets = targets
-        
-        for target in targets {
-            if target.category == TimeCategory.day.rawValue {
-//                targets.append(target)
-            } else if target.category == TimeCategory.week.rawValue {
-//                targets.append(target)
-            } else if target.category == TimeCategory.month.rawValue {
-//                targets.append(target)
-            } else if target.category == TimeCategory.year.rawValue {
-//                targets.append(target)
-            }
-        }
         
         setupNavBar()
         
@@ -116,8 +96,8 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     }
     
     func setListener() {
-        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
-            if let error = error {
+        targetsListener = targetsCollectionRef.order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
+        if let error = error {
                 print(error.localizedDescription)
             } else {
                 self.targets.removeAll()
@@ -125,6 +105,15 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
                 self.tableView.reloadData()
             }
         }
+//        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else {
+//                self.targets.removeAll()
+//                self.targets = Target.parseData(snapshot: snapshot)
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     func tableView(_tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -161,19 +150,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         tableView.reloadData()
     }
     
-    @IBAction func segmentedControllerSelected(_ sender: UISegmentedControl) {
-        switch segmentedController.selectedSegmentIndex {
-        case 0:
-            selectedCategory = TimeCategory.day.rawValue
-        case 1:
-            selectedCategory = TimeCategory.week.rawValue
-        case 2:
-            selectedCategory = TimeCategory.month.rawValue
-        default:
-            selectedCategory = TimeCategory.year.rawValue
-        }
-    }
-    
     @IBAction func addTargetButtonTapped(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "Add New Target", message: "Write for add a new target.", preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -181,7 +157,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 0, TIMESTAMP: FieldValue.serverTimestamp(), CATEGORY: self.selectedCategory, USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
+            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 0, TIMESTAMP: FieldValue.serverTimestamp(), USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {

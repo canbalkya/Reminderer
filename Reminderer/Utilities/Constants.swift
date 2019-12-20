@@ -11,7 +11,6 @@ import Foundation
 let USERS_REF = "users"
 let TARGETS_REF = "targets"
 
-let CATEGORY = "category"
 let TIMESTAMP = "timestamp"
 let USERNAME = "username"
 let DATE_CREATED = "dateCreated"
