@@ -63,6 +63,36 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (contextualAction, view, actionPerformed: (Bool) -> ()) in
+            let alert = UIAlertController(title: "Update Target", message: "Write for update a target.", preferredStyle: .alert)
+            alert.addTextField { (textField) in
+                textField.placeholder = "Update Target"
+                
+                self.targetsCollectionRef.document(self.targets[indexPath.row].text).updateData([TEXT: alert.textFields?.first?.text], completion: { (error) in
+                    if let error = error {
+                        debugPrint("Error adding document: \(error)")
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
+                        self.setListener()
+                    }
+                })
+            }
+            
+            let updateAction = UIAlertAction(title: "Update", style: .default) { (action) in
+                
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+            alert.addAction(updateAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+        editAction.backgroundColor = #colorLiteral(red: 0.08884030049, green: 0.9007376269, blue: 0.4761832245, alpha: 1)
+        
+        return UISwipeActionsConfiguration(actions: [editAction])
+    }
+    
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -86,13 +116,17 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            targetsCollectionRef.document(target!.documentId).delete { (error) in
+            targetsCollectionRef.document(targets[indexPath.row].documentId).delete { (error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
                     self.setListener()
                 }
             }
+        }
+        
+        if editingStyle == .insert {
+            
         }
     }
     
@@ -103,7 +137,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields?.first?.text, NUMBER: 0, TIMESTAMP: FieldValue.serverTimestamp(), USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? ""], completion: { (error) in
+            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields?.first?.text, TIMESTAMP: FieldValue.serverTimestamp(), USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? "", IS_DONE: false], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {
