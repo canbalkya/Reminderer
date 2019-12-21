@@ -102,6 +102,14 @@ class ProfileVC: UIViewController {
                 if let error = error {
                     print(error.localizedDescription)
                 }
+                
+                let auth = Auth.auth()
+                
+                do {
+                    try auth.signOut()
+                } catch let signoutError as NSError {
+                    debugPrint("Error signing out: \(signoutError)")
+                }
             })
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
