@@ -13,7 +13,6 @@ import FirebaseFirestore
 
 class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var segmentedController: UISegmentedControl!
     
     var target: Target!
     private var targets = [Target]()
@@ -34,7 +33,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         
         setupNavBar()
         
-        targetsCollectionRef = Firestore.firestore().collection(TARGETS_REF)
+        targetsCollectionRef = Firestore.firestore().collection(USERS_REF).document(Auth.auth().currentUser!.uid).collection(TARGETS_REF)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,17 +50,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if selectedCategory == TimeCategory.day.rawValue {
-//            count = targets.count
-//        } else if selectedCategory == TimeCategory.week.rawValue {
-//            count = targets.count
-//        } else if selectedCategory == TimeCategory.month.rawValue {
-//            count = targets.count
-//        } else if selectedCategory == TimeCategory.year.rawValue {
-//            count = targets.count
-//        }
-        
-//        return searchTargets.count
         return targets.count
     }
     
@@ -69,16 +57,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
 //        cell?.configureCell(target: searchTargets[indexPath.row])
         cell?.configureCell(target: targets[indexPath.row])
-        
-//        if selectedCategory == TimeCategory.day.rawValue {
-//            cell?.configureCell(target: targets[indexPath.row])
-//        } else if selectedCategory == TimeCategory.week.rawValue {
-//            cell?.configureCell(target: targets[indexPath.row])
-//        } else if selectedCategory == TimeCategory.month.rawValue {
-//            cell?.configureCell(target: targets[indexPath.row])
-//        } else if selectedCategory == TimeCategory.year.rawValue {
-//            cell?.configureCell(target: targets[indexPath.row])
-//        }
         
         return cell!
     }
@@ -105,15 +83,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
                 self.tableView.reloadData()
             }
         }
-//        targetsListener = targetsCollectionRef.whereField(CATEGORY, isEqualTo: selectedCategory).order(by: TIMESTAMP, descending: true).addSnapshotListener { (snapshot, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else {
-//                self.targets.removeAll()
-//                self.targets = Target.parseData(snapshot: snapshot)
-//                self.tableView.reloadData()
-//            }
-//        }
     }
     
     func tableView(_tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -122,7 +91,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            Firestore.firestore().collection(TARGETS_REF).document(target!.documentId).delete { (error) in
+            targetsCollectionRef.document(target!.documentId).delete { (error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
