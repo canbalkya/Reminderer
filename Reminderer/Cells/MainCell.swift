@@ -24,16 +24,17 @@ class MainCell: UITableViewCell {
         
         targetLabel.text = target.text
         
-        if target.number.isMultiple(of: 2) {
-            markButton.imageView?.image = UIImage(named: "square.fill")
-        } else {
-            markButton.imageView?.image = UIImage(named: "square")
-        }
+//        if target.number.isMultiple(of: 2) {
+//            markButton.imageView?.image = UIImage(named: "square.fill")
+//        } else {
+//            markButton.imageView?.image = UIImage(named: "square")
+//        }
     }
     
     @IBAction func markButtonTapped(_ sender: UIButton) {
 //        Firestore.firestore().document("targets/\(targett.documentId!)").updateData([NUMBER: targett.number + 1])
-        targett.number += 1
+//        targett.number += 1
+//        Firestore.firestore().collection(USERS_REF).document(targett)
         markButton.imageView?.image = UIImage(named: "square.fill")
     }
 }

@@ -11,13 +11,10 @@ import Foundation
 let USERS_REF = "users"
 let TARGETS_REF = "targets"
 
-let CATEGORY = "category"
 let TIMESTAMP = "timestamp"
 let USERNAME = "username"
 let DATE_CREATED = "dateCreated"
 let TEXT = "text"
 let IMAGE = "image"
-let NUMBER = "number"
 let USER_ID = "userId"
-
-var status = false
+let IS_DONE = "isDone"

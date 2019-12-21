@@ -22,6 +22,11 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        textFields[0].layer.cornerRadius = 10
+        textFields[1].layer.cornerRadius = 10
+        
+        createToolBar()
+        
         setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
         
         saveButton.alpha = 0.0
@@ -29,6 +34,25 @@ class ProfileVC: UIViewController {
         textFields[1].text = Auth.auth().currentUser?.email
         
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func createToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        toolBar.barTintColor = .black
+        toolBar.tintColor = .white
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(LoginVC.dismissKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        textFields[0].inputAccessoryView = toolBar
+        textFields[1].inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     func setTextFields(enabled: Bool, color: UIColor) {
@@ -101,6 +125,14 @@ class ProfileVC: UIViewController {
             Auth.auth().currentUser?.delete(completion: { (error) in
                 if let error = error {
                     print(error.localizedDescription)
+                }
+                
+                let auth = Auth.auth()
+                
+                do {
+                    try auth.signOut()
+                } catch let signoutError as NSError {
+                    debugPrint("Error signing out: \(signoutError)")
                 }
             })
         }

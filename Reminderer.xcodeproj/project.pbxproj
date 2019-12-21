@@ -103,8 +103,8 @@
 				3A4B69BB2333E3EC008B94E0 /* CreateAccountVC.swift */,
 				3A4B69A22333CE77008B94E0 /* MainVC.swift */,
 				3A4B69B72333E3BB008B94E0 /* CalendarVC.swift */,
-				3A4B69BD2333E41A008B94E0 /* ProfileVC.swift */,
 				3A4B69BF2333E430008B94E0 /* DayVC.swift */,
+				3A4B69BD2333E41A008B94E0 /* ProfileVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
