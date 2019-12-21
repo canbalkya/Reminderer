@@ -9,11 +9,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reminderer-->
-        <scene sceneID="hzB-eR-3Fv">
+        <!--Today-->
+        <scene sceneID="FQf-BS-2bd">
             <objects>
-                <viewController id="du9-8k-EvD" customClass="MainVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oLY-ll-bJd">
+                <viewController id="aLk-5S-WaD" customClass="MainVC" customModule="Reminderer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Q4-an-Pde">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -72,30 +72,30 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="bottom" secondItem="wU8-Y5-apm" secondAttribute="bottom" id="LlE-z9-Rnu"/>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="leading" secondItem="wU8-Y5-apm" secondAttribute="leading" id="cMB-9U-gfT"/>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="top" secondItem="wU8-Y5-apm" secondAttribute="top" id="i07-0s-Ppf"/>
-                            <constraint firstItem="jZU-3e-a3m" firstAttribute="centerX" secondItem="oLY-ll-bJd" secondAttribute="centerX" id="yKc-Tg-nsF"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="top" secondItem="slX-eT-EdW" secondAttribute="top" id="2YG-LW-UE1"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="leading" secondItem="slX-eT-EdW" secondAttribute="leading" id="J2g-aE-eue"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="bottom" secondItem="slX-eT-EdW" secondAttribute="bottom" id="csd-Jl-R36"/>
+                            <constraint firstItem="jZU-3e-a3m" firstAttribute="trailing" secondItem="slX-eT-EdW" secondAttribute="trailing" id="kQR-dJ-08f"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wU8-Y5-apm"/>
+                        <viewLayoutGuide key="safeArea" id="slX-eT-EdW"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Reminderer" largeTitleDisplayMode="always" id="mvu-Bd-s7D">
+                    <navigationItem key="navigationItem" title="Today" largeTitleDisplayMode="always" id="Hus-2C-wLB">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="b8B-Ng-6jL">
                             <color key="tintColor" name="Color"/>
                             <connections>
-                                <action selector="addTargetButtonTapped:" destination="du9-8k-EvD" id="MdV-rq-McQ"/>
+                                <action selector="addTargetButtonTapped:" destination="aLk-5S-WaD" id="FnL-py-4cD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="jZU-3e-a3m" id="6Az-y1-P3D"/>
+                        <outlet property="tableView" destination="jZU-3e-a3m" id="NwI-MP-w17"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fkW-5d-cfE" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xJP-ZT-V6F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611.594202898551" y="-611.38392857142856"/>
+            <point key="canvasLocation" x="2628" y="-611"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="H7W-Iu-Smc">
@@ -209,9 +209,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Jbm-Zg-Ign" kind="relationship" relationship="viewControllers" id="vBX-TY-7xe"/>
-                        <segue destination="yfP-qo-QwJ" kind="relationship" relationship="viewControllers" id="cp2-a0-TFe"/>
-                        <segue destination="MCM-Lc-aLo" kind="relationship" relationship="viewControllers" id="s1C-Ku-xOD"/>
+                        <segue destination="xaC-SF-hQz" kind="relationship" relationship="viewControllers" id="5Td-qa-8Bc"/>
+                        <segue destination="yfP-qo-QwJ" kind="relationship" relationship="viewControllers" id="Yfa-dz-FRg"/>
+                        <segue destination="MCM-Lc-aLo" kind="relationship" relationship="viewControllers" id="JRK-Oy-Y3t"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVv-Sv-iXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -383,25 +383,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="udu-4L-Fz5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3369.5652173913045" y="112.5"/>
-        </scene>
-        <!--Targets-->
-        <scene sceneID="48A-yI-sln">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jbm-Zg-Ign" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Targets" image="pencil" catalog="system" id="wv6-h5-Dlt"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mqD-OD-6Ai">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="du9-8k-EvD" kind="relationship" relationship="rootViewController" id="hc9-6e-ElI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CQ3-Il-MyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1870" y="-611"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="bYb-wz-r70">
@@ -655,6 +636,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDJ-Ls-I5Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1869.5652173913045" y="835.71428571428567"/>
+        </scene>
+        <!--Targets-->
+        <scene sceneID="3h1-HT-QzE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xaC-SF-hQz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Targets" image="pencil" catalog="system" id="o8h-dQ-owB"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8HL-ro-Zeg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aLk-5S-WaD" kind="relationship" relationship="rootViewController" id="RyS-Ja-1Ka"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vyk-nS-k8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="-611"/>
         </scene>
     </scenes>
     <resources>

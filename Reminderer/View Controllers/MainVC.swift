@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var target: Target!
@@ -28,8 +28,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        searchTargets = targets
         
         setupNavBar()
         
@@ -49,28 +47,25 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
         })
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if targetsListener != nil {
+            targetsListener.remove()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return targets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath) as? MainCell
-//        cell?.configureCell(target: searchTargets[indexPath.row])
         cell?.configureCell(target: targets[indexPath.row])
-        
         return cell!
     }
     
     func setupNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.hidesSearchBarWhenScrolling = true
-        
-        searchController.searchResultsUpdater = self as? UISearchResultsUpdating
-        searchController.searchBar.delegate = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Find a target"
-        searchController.searchBar.keyboardAppearance = .dark
-        navigationItem.searchController = searchController
     }
     
     func setListener() {
@@ -99,24 +94,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISe
                 }
             }
         }
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        searchTargets = targets.filter({ target -> Bool in
-//            if searchText.isEmpty { return true }
-//            return target.text.lowercased().contains(searchText.lowercased())
-//        })
-        targets = targets.filter({ target -> Bool in
-            if searchText.isEmpty { return true }
-            return target.text.lowercased().contains(searchText.lowercased())
-        })
-        
-        tableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-//        searchTargets = targets
-        tableView.reloadData()
     }
     
     @IBAction func addTargetButtonTapped(_ sender: UIBarButtonItem) {
