@@ -8,97 +8,22 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class ProfileVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet var textFields: [UITextField]!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var deleteAccountButton: UIButton!
-    
-    var bool = Bool()
-    var tapped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        textFields[0].layer.cornerRadius = 10
-        textFields[1].layer.cornerRadius = 10
-        
-        createToolBar()
-        
-        setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
-        
-        saveButton.alpha = 0.0
-        textFields[0].text = Auth.auth().currentUser?.displayName
-        textFields[1].text = Auth.auth().currentUser?.email
+        usernameLabel.text = Auth.auth().currentUser?.displayName
+        emailLabel.text = Auth.auth().currentUser?.email
         
         navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    func createToolBar() {
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        toolBar.barTintColor = .black
-        toolBar.tintColor = .white
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(LoginVC.dismissKeyboard))
-        
-        toolBar.setItems([doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        textFields[0].inputAccessoryView = toolBar
-        textFields[1].inputAccessoryView = toolBar
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    func setTextFields(enabled: Bool, color: UIColor) {
-        textFields[0].isUserInteractionEnabled = enabled
-        textFields[1].isUserInteractionEnabled = enabled
-        
-        textFields[0].backgroundColor = color
-        textFields[1].backgroundColor = color
-    }
-    
-    @IBAction func editTapped(_ sender: UIBarButtonItem) {
-        if tapped == false {
-            tapped = true
-
-            setTextFields(enabled: true, color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1))
-            saveButton.isEnabled = true
-            saveButton.alpha = 1
-        } else {
-            tapped = false
-
-            setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
-            saveButton.isEnabled = false
-            saveButton.alpha = 0
-        }
-    }
-    
-    @IBAction func saveTapped(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Do you want to change them?", message: "If you change these, you have to use your new email or username.", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            self.textFields[0].text = Auth.auth().currentUser?.displayName
-            Auth.auth().currentUser?.updateEmail(to: self.textFields[1].text!, completion: { (error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(yesAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-        
-        setTextFields(enabled: false, color: UIColor(named: "Color-1")!)
-        saveButton.isEnabled = false
-        saveButton.alpha = 0
-        tapped = false
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
