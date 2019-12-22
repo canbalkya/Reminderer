@@ -20,10 +20,27 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameLabel.text = Auth.auth().currentUser?.displayName
-        emailLabel.text = Auth.auth().currentUser?.email
+        let user = Auth.auth().currentUser
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        user?.reload(completion: { (error) in
+            self.usernameLabel.text = user?.displayName
+            self.emailLabel.text = user?.email
+            
+            switch user?.isEmailVerified {
+            case true:
+                print("Users email is verified.")
+            default:
+                user?.sendEmailVerification(completion: { (error) in
+                    guard let error = error else {
+                        return print("User email verification sent.")
+                    }
+                })
+                
+                self.emailLabel.text = "\((user!.email)!) - Verify!"
+            }
+        })
     }
     
     @IBAction func logoutButtonTapped(_ sender: UIButton) {
@@ -52,13 +69,13 @@ class ProfileVC: UIViewController {
                     print(error.localizedDescription)
                 }
                 
-                let auth = Auth.auth()
-                
-                do {
-                    try auth.signOut()
-                } catch let signoutError as NSError {
-                    debugPrint("Error signing out: \(signoutError)")
-                }
+//                let auth = Auth.auth()
+//
+//                do {
+//                    try auth.signOut()
+//                } catch let signoutError as NSError {
+//                    debugPrint("Error signing out: \(signoutError)")
+//                }
             })
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
