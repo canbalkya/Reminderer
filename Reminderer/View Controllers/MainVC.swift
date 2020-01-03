@@ -69,7 +69,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addTextField { (textField) in
                 textField.placeholder = "Update Target"
                 
-                self.targetsCollectionRef.document(self.targets[indexPath.row].text).updateData([TEXT: alert.textFields?.first?.text], completion: { (error) in
+                self.targetsCollectionRef.document(self.targets[indexPath.row].text).updateData([TEXT: alert.textFields![0].text ?? ""], completion: { (error) in
                     if let error = error {
                         debugPrint("Error adding document: \(error)")
                     } else {
@@ -124,10 +124,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-        
-        if editingStyle == .insert {
-            
-        }
     }
     
     @IBAction func addTargetButtonTapped(_ sender: UIBarButtonItem) {
@@ -137,7 +133,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
 
         let addAction = UIAlertAction(title: "Add", style: .default) { (action) in
-            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields?.first?.text, TIMESTAMP: FieldValue.serverTimestamp(), USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? "", IS_DONE: false], completion: { (error) in
+            self.targetsCollectionRef.addDocument(data: [TEXT: alert.textFields![0].text ?? "", TIMESTAMP: FieldValue.serverTimestamp(), USER_ID: Auth.auth().currentUser?.uid ?? "", USERNAME: Auth.auth().currentUser?.displayName ?? "", IS_DONE: false], completion: { (error) in
                 if let error = error {
                     debugPrint("Error adding document: \(error)")
                 } else {
