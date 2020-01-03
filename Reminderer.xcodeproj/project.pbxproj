@@ -88,8 +88,8 @@
 				3A4B69B52333D0DE008B94E0 /* View Controllers */,
 				3A4B69B62333D0E9008B94E0 /* Cells */,
 				3A4B69A42333CE77008B94E0 /* Main.storyboard */,
-				3A4B69AA2333CE78008B94E0 /* Assets.xcassets */,
 				3A4B69AC2333CE78008B94E0 /* LaunchScreen.storyboard */,
+				3A4B69AA2333CE78008B94E0 /* Assets.xcassets */,
 				3A4B69AF2333CE78008B94E0 /* Info.plist */,
 				3A4B6A2723354D77008B94E0 /* GoogleService-Info.plist */,
 			);
